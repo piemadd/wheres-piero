@@ -34,13 +34,6 @@ export const RefreshIcon = () => (
   </Icon>
 );
 
-export const CrosshairIcon = () => (
-  <Icon size={16}>
-    <circle cx="12" cy="12" r="8" />
-    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-  </Icon>
-);
-
 export const ChevronIcon = ({ up }) => (
   <Icon size={16}>
     <path d={up ? 'M18 15l-6-6-6 6' : 'M6 9l6 6 6-6'} />

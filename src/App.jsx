@@ -11,7 +11,7 @@ import { parseDevices, toGeoJSON } from './lib/positions';
 const App = () => {
   const [theme, toggleTheme] = useTheme();
   const user = useAuth();
-  const { data, loading, error, live, refresh } = useLocationData(Boolean(user));
+  const { data, loading, error, refresh } = useLocationData(Boolean(user));
   const mapRef = useRef(null);
 
   const devices = useMemo(() => parseDevices(data), [data]);
@@ -31,7 +31,6 @@ const App = () => {
           devices={devices}
           loading={loading}
           error={error}
-          live={live}
           onRefresh={refresh}
           onLocate={locate}
         />

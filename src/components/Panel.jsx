@@ -2,69 +2,45 @@ import { useState } from 'react';
 import { useNow } from '../hooks/useNow';
 import { formatCoords, formatMeters, formatTime, timeAgo } from '../lib/format';
 import { pb } from '../lib/pocketbase';
-import { ChevronIcon, CrosshairIcon, RefreshIcon } from './Icons';
+import { ChevronIcon, RefreshIcon } from './Icons';
 
-const DeviceCard = ({ device, now, onLocate }) => {
+const DeviceRow = ({ device, now, onLocate }) => {
   const { latest } = device;
+  if (!latest) {
+    return (
+      <li className="device">
+        <p className="muted">{device.name} hasn't sent a usable position yet.</p>
+      </li>
+    );
+  }
+
   return (
     <li className="device">
-      <div className="device-head">
-        <span className="device-name">{device.name}</span>
-        {latest && (
-          <button
-            type="button"
-            className="icon-button small"
-            onClick={() => onLocate(latest)}
-            aria-label={`Center map on ${device.name}`}
-            title="Center map"
-          >
-            <CrosshairIcon />
-          </button>
-        )}
-      </div>
-      {latest ? (
-        <>
-          <dl className="stats">
-            <div>
-              <dt>Position</dt>
-              <dd>{formatCoords(latest.lat, latest.lon)}</dd>
-            </div>
-            <div>
-              <dt>Accuracy</dt>
-              <dd>±{formatMeters(latest.acc)}</dd>
-            </div>
-            <div>
-              <dt>Altitude</dt>
-              <dd>{formatMeters(latest.alt)}</dd>
-            </div>
-            <div>
-              <dt>Points</dt>
-              <dd>{device.positions.length}</dd>
-            </div>
-          </dl>
-        </>
-      ) : (
-        <p className="muted">No mappable positions yet.</p>
-      )}
-      {device.lastUpdated && (
-        <p className="muted small-text" title={formatTime(device.lastUpdated)}>
-          Device reported {timeAgo(device.lastUpdated, now)}
-        </p>
-      )}
+      <p className="seen" title={formatTime(latest.time)}>
+        Seen {timeAgo(latest.time, now)}
+      </p>
+      <button type="button" className="coords" onClick={() => onLocate(latest)} title="Center the map here">
+        {formatCoords(latest.lat, latest.lon)}
+      </button>
+      <p className="meta">
+        within {formatMeters(latest.acc)} · {formatMeters(latest.alt)} up · {device.positions.length} points
+      </p>
+      <p className="meta" title={device.lastUpdated ? formatTime(device.lastUpdated) : undefined}>
+        {device.name}
+        {device.lastUpdated && `, checked in ${timeAgo(device.lastUpdated, now)}`}
+      </p>
     </li>
   );
 };
 
-const Panel = ({ user, devices, loading, error, live, onRefresh, onLocate }) => {
+const Panel = ({ user, devices, loading, error, onRefresh, onLocate }) => {
   const now = useNow();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
     <aside className={`card panel${collapsed ? ' collapsed' : ''}`}>
       <header className="panel-head">
-        <div>
-          <h1>Where's Piero?</h1>
-        </div>
+        <h1>Where's Piero?</h1>
         <button
           type="button"
           className="icon-button small"
@@ -96,14 +72,14 @@ const Panel = ({ user, devices, loading, error, live, onRefresh, onLocate }) => 
           {devices.length > 0 ? (
             <ul className="devices">
               {devices.map((d) => (
-                <DeviceCard key={d.id} device={d} now={now} onLocate={onLocate} />
+                <DeviceRow key={d.id} device={d} now={now} onLocate={onLocate} />
               ))}
             </ul>
           ) : (
-            !loading && !error && <p className="muted">No location data yet.</p>
+            !loading && !error && <p className="muted">Nothing here yet.</p>
           )}
           <footer className="panel-foot">
-            <span className="muted small-text" title={user.email}>
+            <span className="muted" title={user.email}>
               {user.email}
             </span>
             <button type="button" className="link-button" onClick={() => pb.authStore.clear()}>

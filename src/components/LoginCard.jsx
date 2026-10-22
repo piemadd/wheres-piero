@@ -23,6 +23,7 @@ const LoginCard = () => {
     <div className="login-backdrop">
       <form className="card login" onSubmit={onSubmit}>
         <h1>Where's Piero?</h1>
+        <p className="muted">This map is private. Sign in to see it.</p>
         <label>
           Email
           <input
