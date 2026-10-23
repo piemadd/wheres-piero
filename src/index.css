@@ -11,7 +11,7 @@
   --accent-text: #ffffff;
   --danger: #ff8080;
   --danger-bg: rgba(255, 99, 99, 0.12);
-  }
+}
 
 :root[data-theme="light"] {
   color-scheme: light;
