@@ -25,9 +25,8 @@ const DeviceRow = ({ device, now, onLocate }) => {
       <p className="meta">
         within {formatMeters(latest.acc)} · {formatMeters(latest.alt)} up · {device.positions.length} points
       </p>
-      <p className="meta" title={device.lastUpdated ? formatTime(device.lastUpdated) : undefined}>
+      <p className="meta">
         {device.name}
-        {device.lastUpdated && `, checked in ${timeAgo(device.lastUpdated, now)}`}
       </p>
     </li>
   );
@@ -41,6 +40,7 @@ const Panel = ({ user, devices, loading, error, onRefresh, onLocate }) => {
     <aside className={`card panel${collapsed ? ' collapsed' : ''}`}>
       <header className="panel-head">
         <h1>Where's Piero?</h1>
+        <p>v1.1.0</p>
         <button
           type="button"
           className="icon-button small"
