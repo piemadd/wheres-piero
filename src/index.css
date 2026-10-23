@@ -1,5 +1,5 @@
 :root,
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0e1116;
   --surface: #171b21;
@@ -11,10 +11,9 @@
   --accent-text: #ffffff;
   --danger: #ff8080;
   --danger-bg: rgba(255, 99, 99, 0.12);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.25);
-}
+  }
 
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   color-scheme: light;
   --bg: #f4f2ee;
   --surface: #ffffff;
@@ -26,7 +25,6 @@
   --accent-text: #ffffff;
   --danger: #c62828;
   --danger-bg: rgba(198, 40, 40, 0.08);
-  --shadow: 0 1px 2px rgba(40, 30, 10, 0.12), 0 6px 16px rgba(40, 30, 10, 0.08);
 }
 
 *,
@@ -45,7 +43,13 @@ body,
 body {
   background: var(--bg);
   color: var(--text);
-  font: 14px/1.45 Google Sans, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font:
+    14px/1.45 Google Sans,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   font-variant-numeric: lining-nums;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
@@ -93,7 +97,6 @@ button:disabled {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 6px;
-  box-shadow: var(--shadow);
 }
 
 .icon-button {
@@ -105,7 +108,6 @@ button:disabled {
   border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--surface);
-  box-shadow: var(--shadow);
 }
 
 .icon-button.small {
@@ -114,7 +116,6 @@ button:disabled {
   border-radius: 4px;
   background: transparent;
   border-color: transparent;
-  box-shadow: none;
   color: var(--text-muted);
 }
 
@@ -202,7 +203,10 @@ button:disabled {
   border: 0;
   padding: 0;
   background: none;
-  font: 500 13px/1.4 'IBM Plex Mono', ui-monospace, monospace;
+  font:
+    500 13px/1.4 "IBM Plex Mono",
+    ui-monospace,
+    monospace;
   text-decoration: underline dotted var(--text-muted);
   text-underline-offset: 3px;
 }
@@ -350,7 +354,6 @@ button:disabled {
   border-radius: 6px;
   padding: 10px 12px;
   font: inherit;
-  box-shadow: var(--shadow);
 }
 
 .maplibregl-popup.maplibregl-popup-anchor-top .maplibregl-popup-tip {
@@ -372,25 +375,25 @@ button:disabled {
   font-size: 13px;
 }
 
-:root[data-theme='dark'] .maplibregl-ctrl-group,
-:root[data-theme='dark'] .maplibregl-ctrl-attrib,
-:root[data-theme='dark'] .maplibregl-ctrl-scale {
+:root[data-theme="dark"] .maplibregl-ctrl-group,
+:root[data-theme="dark"] .maplibregl-ctrl-attrib,
+:root[data-theme="dark"] .maplibregl-ctrl-scale {
   background: var(--surface);
   color: var(--text-muted);
 }
 
-:root[data-theme='dark'] .maplibregl-ctrl-group button + button {
+:root[data-theme="dark"] .maplibregl-ctrl-group button + button {
   border-top-color: var(--border);
 }
 
-:root[data-theme='dark'] .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+:root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
   filter: invert(1);
 }
 
-:root[data-theme='dark'] .maplibregl-ctrl-attrib a {
+:root[data-theme="dark"] .maplibregl-ctrl-attrib a {
   color: var(--text-muted);
 }
 
-:root[data-theme='dark'] .maplibregl-ctrl-attrib-button {
+:root[data-theme="dark"] .maplibregl-ctrl-attrib-button {
   filter: invert(1);
 }
