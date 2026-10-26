@@ -38,6 +38,7 @@ const overlayLayers = (theme) => {
       id: 'points',
       type: 'circle',
       source: 'points',
+      minzoom: 6,
       paint: {
         'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 2, 16, 4.5],
         'circle-color': ['get', 'color'],
