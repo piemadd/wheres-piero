@@ -40,7 +40,7 @@ const Panel = ({ user, devices, loading, error, onRefresh, onLocate }) => {
     <aside className={`card panel${collapsed ? ' collapsed' : ''}`}>
       <header className="panel-head">
         <h1>Where's Piero?</h1>
-        <p>v1.1.0</p>
+        <p>v1.2.0</p>
         <button
           type="button"
           className="icon-button small"
